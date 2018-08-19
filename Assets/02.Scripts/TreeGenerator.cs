@@ -5,10 +5,10 @@ using UnityEngine;
 public class TreeGenerator : MonoBehaviour
 {
 
-	public Transform tilePrefeb;
-	public Transform obstaclePrefeb;
+	public Transform floorPrefeb;
+	public Transform treePrefeb;
 	public Vector2 mapSize;
-	public int obstacleCount = 10;
+	public int treeCount = 10;
 
 	List<Coord> allTileCoords;
 	Queue<Coord> shuffledTileCoords;
@@ -48,17 +48,17 @@ public class TreeGenerator : MonoBehaviour
 		{
 			for (int y = 0; y < mapSize.y; y++)
 			{
-				Vector3 tilePosition = CoordToPosition(x, y, tilePrefeb);
-				Transform newTile = Instantiate(tilePrefeb, tilePosition, Quaternion.Euler(Vector3.right * 0)) as Transform;
+				Vector3 tilePosition = CoordToPosition(x, y, floorPrefeb);
+				Transform newTile = Instantiate(floorPrefeb, tilePosition, Quaternion.Euler(Vector3.right * 0)) as Transform;
 				newTile.parent = mapHolder;
 			}
 		}
 
-		for (int i = 0; i < obstacleCount; i++)
+		for (int i = 0; i < treeCount; i++)
 		{
 			Coord randomCoord = GetRandomCoord();
-			Vector3 obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y, obstaclePrefeb);
-			Transform newObstacle = Instantiate(obstaclePrefeb, obstaclePosition + Vector3.up * tilePrefeb.transform.localScale.y / 2, obstaclePrefeb.transform.rotation) as Transform;
+			Vector3 obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y, treePrefeb);
+			Transform newObstacle = Instantiate(treePrefeb, obstaclePosition + Vector3.up * floorPrefeb.transform.localScale.y / 2, treePrefeb.transform.rotation) as Transform;
 			newObstacle.parent = mapHolder;
 		}
 
@@ -66,8 +66,8 @@ public class TreeGenerator : MonoBehaviour
 
 	Vector3 CoordToPosition(int x, int y, Transform Prefeb)
 	{
-		return new Vector3(-mapSize.x / 2 * tilePrefeb.transform.localScale.x + tilePrefeb.transform.localScale.x / 2 + x * tilePrefeb.transform.localScale.x, tilePrefeb.transform.localScale.y / 2,
-						   -mapSize.y / 2 * tilePrefeb.transform.localScale.z + tilePrefeb.transform.localScale.z / 2 + y * tilePrefeb.transform.localScale.z);
+		return new Vector3(-mapSize.x / 2 * floorPrefeb.transform.localScale.x + floorPrefeb.transform.localScale.x / 2 + x * floorPrefeb.transform.localScale.x, floorPrefeb.transform.localScale.y / 2,
+						   -mapSize.y / 2 * floorPrefeb.transform.localScale.z + floorPrefeb.transform.localScale.z / 2 + y * floorPrefeb.transform.localScale.z);
 	}
 
 	public Coord GetRandomCoord()

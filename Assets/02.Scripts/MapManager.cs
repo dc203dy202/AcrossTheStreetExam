@@ -18,8 +18,9 @@ public class MapManager : MonoBehaviour {
 	public int mapSize_z = 2;
 
 	public int z_axis = 0;
+	
 
-	private void Start()
+	public void Start()
 	{
 		MakeMap();
 		GameStart();
@@ -38,6 +39,8 @@ public class MapManager : MonoBehaviour {
 			mapLevel= Random.Range(0, 5);
 			LoadMap(mapCode, mapLevel);
 		}
+
+
 	}
 
 	public void LoadMap(int mapCode, int mapLevel)
@@ -45,20 +48,20 @@ public class MapManager : MonoBehaviour {
 		DeleteMap();
 		Vector3 mapPosition = new Vector3(0, floors[mapCode].transform.localScale.y / 2, z_axis * mapSize_z);
 		objects[mapCode, mapNum[mapCode]].transform.position = mapPosition; //zeroPosition에 있던 맵을 옮기고
-		objects[mapCode, mapNum[mapCode]].active = true; //활성시킨다
+		objects[mapCode, mapNum[mapCode]].SetActive(true); //활성시킨다
 		mapSequence[mapNow, 0] = mapCode; //활성시킨 맵의 종류를 저장
 		mapSequence[mapNow, 1] = mapNum[mapCode]; //활성시킨 맵의 번호를 저장
 
 
 		//후처리
 		mapNum[mapCode] = mapNum[mapCode] == 19 ? 0 : mapNum[mapCode] + 1; //이번에 사용한 맵의 종류에 ++하여 다음에 사용할 최신 맵 번호 지정
-		mapNow++; //다음 줄 순서 지정
+		mapNow = mapNow == 24 ? 0 : mapNow + 1; //다음 줄 순서 지정
 		z_axis++;
 	}
 
 	public void DeleteMap()
 	{
-		objects[mapSequence[mapNow, 0], mapSequence[mapNow, 1]].active = false;
+		objects[mapSequence[mapNow, 0], mapSequence[mapNow, 1]].SetActive(false);
 	}
 
 	public void MakeMap()
@@ -69,7 +72,7 @@ public class MapManager : MonoBehaviour {
 			for(int j = 0; j < objects.GetLength(1); j++)
 			{
 				objects[i, j] = Instantiate(floors[i], zeroPosition, transform.rotation) as GameObject;
-				objects[i, j].active = false;
+				objects[i, j].SetActive(false);
 			}
 		}
 	}
