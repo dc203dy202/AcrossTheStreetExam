@@ -13,7 +13,7 @@ public static class Utility
 			array[randomIndex] = array[i];
 			array[i] = tempItem;
 		}
-
+		
 		return array;
 	}
 	

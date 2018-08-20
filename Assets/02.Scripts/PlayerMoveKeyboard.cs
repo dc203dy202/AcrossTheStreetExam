@@ -66,7 +66,7 @@ public class PlayerMoveKeyboard : MonoBehaviour {
 	{
 		if(this.transform.position.z > beforeZ + 2)
 		{
-			MapManager.GetComponent<MapManager>().LoadMap((int)Random.Range(0.0f, 4.0f), 0);
+			MapManager.GetComponent<MapManager>().LoadMap((int)Random.Range(0.0f, 4.0f), (int)Random.Range(0.0f, 5.0f));
 			beforeZ += 2;
 		}
 	}
