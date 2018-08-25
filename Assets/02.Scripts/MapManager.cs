@@ -45,12 +45,10 @@ public class MapManager : MonoBehaviour {
 
 	public void LoadMap(int mapCode, int mapLevel)
 	{
-		DeleteMap();
-
 		//switch (mapSequence[mapNow, 0])
 		//{
 		//	case 0:
-		//		objects[0, mapSequence[mapNow, 1]].GetComponent<TreeManager>().CallManager();
+		//		//objects[0, mapSequence[mapNow, 1]].GetComponent<TreeManager>().CallManager();
 		//		break;
 		//	case 1:
 		//		break;
@@ -60,7 +58,10 @@ public class MapManager : MonoBehaviour {
 		//		break;
 		//}
 
-		Vector3 mapPosition = new Vector3(0, 0 , z_axis * mapSize_z); //이전 y값 : floors[mapCode].transform.localScale.y / 2
+		DeleteMap();
+
+
+		Vector3 mapPosition = new Vector3(0, 0, z_axis * mapSize_z); //이전 y값 : floors[mapCode].transform.localScale.y / 2
 		objects[mapCode, mapNum[mapCode]].transform.position = mapPosition; //zeroPosition에 있던 맵을 옮기고
 		objects[mapCode, mapNum[mapCode]].SetActive(true); //활성시킨다
 		mapSequence[mapNow, 0] = mapCode; //활성시킨 맵의 종류를 저장
@@ -76,6 +77,7 @@ public class MapManager : MonoBehaviour {
 	public void DeleteMap()
 	{
 		objects[mapSequence[mapNow, 0], mapSequence[mapNow, 1]].SetActive(false);
+
 	}
 
 	public void MakeMap()

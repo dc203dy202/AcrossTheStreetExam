@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floors:
-  - {fileID: 1002219667000898, guid: 7ab93dc0ba6c66648889e71ecf7763dd, type: 2}
+  - {fileID: 1044380601299688, guid: 015d36246b7cbac44869df65138792ce, type: 2}
   - {fileID: 1325835457952192, guid: 65d489ff1863fd543ba44dd13f4f8405, type: 2}
   - {fileID: 1325835457952192, guid: 5dbed83f7bd930148bab9cbf51f5522f, type: 2}
   - {fileID: 1325835457952192, guid: 591b4943dad81c04b8c219d455abc8ed, type: 2}
