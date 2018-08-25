@@ -47,7 +47,7 @@ public class NewTreeGenerator : MonoBehaviour
 
 		for (int x = 0; x < mapSize; x++)
 		{
-				Vector3 tilePosition = CoordToPosition(x, 0, floorPrefeb);
+				Vector3 tilePosition = CoordToPosition(x, 0);
 				Transform newTile = Instantiate(floorPrefeb, this.transform.position + tilePosition, Quaternion.Euler(Vector3.right * 0)) as Transform;
 				newTile.parent = mapHolder; 
 		}
@@ -55,17 +55,17 @@ public class NewTreeGenerator : MonoBehaviour
 		for (int i = 0; i < treeCount; i++)
 		{
 			Coord randomCoord = GetRandomCoord();
-			Vector3 obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y, treePrefeb);
+			Vector3 obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y);
 			Transform newObstacle = Instantiate(treePrefeb, this.transform.position + obstaclePosition + Vector3.up * floorPrefeb.transform.localScale.y / 2, treePrefeb.transform.rotation) as Transform;
 			newObstacle.parent = mapHolder;
 		}
 
 	}
 
-	Vector3 CoordToPosition(int x, int y, Transform Prefeb)
+	Vector3 CoordToPosition(int x, int y)
 	{
 		return new Vector3(-mapSize / 2 * floorPrefeb.transform.localScale.x + floorPrefeb.transform.localScale.x / 2 + x * floorPrefeb.transform.localScale.x, floorPrefeb.transform.localScale.y / 2,
-						   floorPrefeb.transform.localScale.z / 2 + y * floorPrefeb.transform.localScale.z);
+						   y * floorPrefeb.transform.localScale.z );
 	}
 
 	public Coord GetRandomCoord()

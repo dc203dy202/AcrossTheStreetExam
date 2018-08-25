@@ -9,4 +9,5 @@ public class CarMove : MonoBehaviour {
 	void Update () {
 		this.transform.Translate(Vector3.forward * speed);
 	}
+	
 }
