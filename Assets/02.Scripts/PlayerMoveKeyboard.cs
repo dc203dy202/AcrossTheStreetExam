@@ -70,4 +70,6 @@ public class PlayerMoveKeyboard : MonoBehaviour {
 			beforeZ += 2;
 		}
 	}
+
+	
 }

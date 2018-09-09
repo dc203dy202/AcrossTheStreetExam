@@ -80,9 +80,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594641473d8536942bd3b63d7f62488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefeb: {fileID: 4014108907314108, guid: 6d3179d9180cff246b6e84f12a3aaab5,
+  floorPrefeb: {fileID: 4014108907314108, guid: 0e08121a9342d2543ace1f69e0a0a05d,
     type: 2}
-  carPrefeb: {fileID: 1544779535160306, guid: e8a7d759e41af5a489cde278d0912eec, type: 2}
+  carPrefeb: {fileID: 100008, guid: 5c57f0ec210d57f4ebdb09701600e770, type: 2}
   mapSize: 20
+  carPosition: {x: 0, y: 0, z: 0}
   sec: 1
   goForward: 1

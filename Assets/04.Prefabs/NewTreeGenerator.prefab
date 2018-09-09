@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bed24c0a6db30469b670f2201c9f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPrefeb: {fileID: 4014108907314108, guid: 6d3179d9180cff246b6e84f12a3aaab5,
+  floorPrefeb: {fileID: 4014108907314108, guid: 35927ef24397696419b15a7744aa6f9e,
     type: 2}
   treePrefeb: {fileID: 4237373836830522, guid: ddeda80197818174ea19ad5b0c7d759e, type: 2}
   mapSize: 20

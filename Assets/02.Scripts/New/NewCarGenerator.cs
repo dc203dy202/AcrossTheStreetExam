@@ -6,9 +6,11 @@ public class NewCarGenerator : MonoBehaviour {
 
 	public Transform floorPrefeb;
 	public GameObject carPrefeb;
+	private GameObject newCar;
 	public float mapSize = 20;
 
 	bool makeCar = true;
+	public Vector3 carPosition;
 
 	List<Coord> allTileCoords;
 	  
@@ -21,9 +23,11 @@ public class NewCarGenerator : MonoBehaviour {
 		//InitPool(carPrefeb, 10);		
 
 		goForward = Random.Range(0, 2) == 1;
-		sec = Random.Range(1, 5);
+		sec = Random.Range(1, 4);
+		carPosition = CoordToPosition(goForward ? 0 : 1 * (int)mapSize, 0);
 		GenerateMap();
-		StartCoroutine(GenerateCar(sec));
+		CarGenerator();
+		StartCoroutine(CarReset(sec));
 
 		//StartCoroutine(CarLoop());
 	}
@@ -55,7 +59,7 @@ public class NewCarGenerator : MonoBehaviour {
 				Transform newTile = Instantiate(floorPrefeb, this.transform.position + tilePosition, Quaternion.Euler(Vector3.right * 0)) as Transform;
 				newTile.parent = mapHolder;
 		}
-
+			
 		//for(int i = 0; i < treeCount; i++)
 		//{
 		//	Coord randomCoord = GetRandomCoord();
@@ -68,8 +72,8 @@ public class NewCarGenerator : MonoBehaviour {
 
 	Vector3 CoordToPosition(int x, int y)
 	{
-		return new Vector3(-mapSize / 2 * floorPrefeb.transform.localScale.x + floorPrefeb.transform.localScale.x / 2 + x * floorPrefeb.transform.localScale.x, 0,
-												   y * floorPrefeb.transform.localScale.y);
+		return new Vector3(-mapSize / 2 * floorPrefeb.transform.localScale.x + floorPrefeb.transform.localScale.x / 2 + x * floorPrefeb.transform.localScale.x, floorPrefeb.transform.localScale.y / 2,
+												   y * floorPrefeb.transform.localScale.z);
 	}
 
 
@@ -85,25 +89,22 @@ public class NewCarGenerator : MonoBehaviour {
 		}
 	}
 
-	IEnumerator GenerateCar(int sec)
+	public void CarGenerator()
 	{
-		speed = 0.1f / (float)sec;
+		newCar = Instantiate(carPrefeb, this.transform.position + carPosition + Vector3.up * floorPrefeb.transform.localScale.y, Quaternion.Euler(Vector3.up * (goForward ? 90 : 270))) as GameObject;
+		newCar.transform.parent = this.transform;
+		speed = 0.5f / (float)sec;
+
 		carPrefeb.GetComponent<CarMove>().speed = this.speed;
+	}
 
-		while (makeCar)
+	IEnumerator CarReset(int sec)
+	{
+		while (true)
 		{
-			if (goForward)
-			{
-				Vector3 tilePosition = CoordToPosition(0, 0);
-				GameObject newCar = Instantiate(carPrefeb, this.transform.position + tilePosition + Vector3.up * carPrefeb.transform.localScale.y / 2, carPrefeb.transform.rotation) as GameObject;
-			}
-			else
-			{
-				Vector3 tilePosition = CoordToPosition((int)mapSize, 0);
-				GameObject newCar = Instantiate(carPrefeb, this.transform.position +  tilePosition + Vector3.up * carPrefeb.transform.localScale.y / 2, Quaternion.Euler(Vector3.up * 270)) as GameObject;
-
-			}
+			newCar.transform.position = this.transform.position + carPosition + Vector3.up * (carPrefeb.transform.localScale.y / 2 + floorPrefeb.transform.localScale.y / 2);
 			yield return new WaitForSeconds(sec);
+			
 		}
 	}
 
