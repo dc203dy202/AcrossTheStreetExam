@@ -42,12 +42,16 @@ public class PlayerMoveKeyboard : MonoBehaviour {
 			else if (Input.GetKey(KeyCode.A))//왼
 			{
 				//transform.Translate(Vector3.left * speed * Time.deltaTime);
-				moveDirection = new Vector3(-speed, 0, 0);
+				//moveDirection = new Vector3(-speed, 0, 0);
+				//this.transform.Rotate(0.0f, speed * Time.deltaTime, 0.0f);
+				
+				
 			}
 			else if (Input.GetKey(KeyCode.D))//오
 			{
 				//transform.Translate(Vector3.right * speed * Time.deltaTime);
-				moveDirection = new Vector3(speed, 0, 0);
+				//moveDirection = new Vector3(speed, 0, 0);
+				//this.transform.Rotate(0.0f, -speed * Time.deltaTime, 0.0f);
 			}
 			moveDirection = transform.TransformDirection(moveDirection);
 		}
